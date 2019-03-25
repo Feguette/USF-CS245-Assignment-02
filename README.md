@@ -1,5 +1,5 @@
 # CS 245 (Spring, 2019) Assignment 2
-@ author Jason Liang
+@author Jason Liang
 
 
 ## HybridSort
