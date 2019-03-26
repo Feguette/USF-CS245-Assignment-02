@@ -5,7 +5,6 @@
  * @version (27 February 2019)
  */
 public class QuickSort implements SortingAlgorithm {
-
     public void sort(double[] a) {
         quickSort(a, 0, a.length-1);
     }

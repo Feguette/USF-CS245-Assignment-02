@@ -16,8 +16,8 @@ public class HybridSortTest {
 	protected SortingFactory factory;      // This creates different sorting algorithms.
 	//protected String [] algorithms = {"insertionsort", "mergesort", "quicksort"}; // Algos to use.
 	//protected String [] algorithms = {"quicksort", "hybridsort", "mergesort"}; // Algos to use.
-	protected String [] algorithms = {"quicksort", "mergesort","hybridsort"}; // Algos to use.
-	//protected String [] algorithms = {"hybridsort", "mergesort", "quicksort"}; // Algos to use.
+	//protected String [] algorithms = {"quicksort", "mergesort","hybridsort", "external"}; // Algos to use.
+	protected String [] algorithms = {"hybridsort", "mergesort", "quicksort"}; // Algos to use.
 
 	
 	/**
@@ -217,7 +217,7 @@ public class HybridSortTest {
 		//int [] sizes = {2,5, 10};
 		
 		for (int size : sizes) {
-			timing.changeArraySize(size*10);
+			timing.changeArraySize(size);
 			// timing.printStatus();
 			timing.printSortingTiming();
 			System.out.println("----------------------------------------------------");

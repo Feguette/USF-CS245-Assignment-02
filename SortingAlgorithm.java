@@ -5,6 +5,6 @@
  *
  */
 public interface SortingAlgorithm {
+    void sort(double[] a);
 
-    void sort(double [] a);
 }

@@ -37,6 +37,9 @@ public class SortingFactory {
 		if (lowercaseAlgoName.contains("hybrid")) {
 			return new HybridSort();
 		}
+		if (lowercaseAlgoName.contains("external")) {
+			return new ExternalSort();
+		}
 		
 		// Invalid algorithm name specified. Use default?
 		if (useDefault) {

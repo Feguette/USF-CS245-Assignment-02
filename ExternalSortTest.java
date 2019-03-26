@@ -2,6 +2,7 @@ import java.io.File;
 
 public class ExternalSortTest {
     public static void main(String[] args) {
+
         String inputString = "input";
         String outputString = "output";
         ExternalSort test = new ExternalSort();

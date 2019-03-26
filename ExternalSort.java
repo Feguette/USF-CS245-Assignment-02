@@ -2,9 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ExternalSort implements SortingAlgorithm{
-
     private static int size = 10, lower = 0, upper = 1;
-
     public ExternalSort() {
 
     }
@@ -14,20 +12,41 @@ public class ExternalSort implements SortingAlgorithm{
      * @param arr Skeleton
      */
     public void sort(double[] arr) {
+        File results = toDirectory(".", "Results");
+        arrayToFile(arr, "input", results.toString());
+        externalSort("input", "output", arr.length, arr.length/16);
+        try {
+            copyOver(fileToArray(new File(results + File.separator + "output")), arr);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
+    }
+
+    private void copyOver(double[] input, double[] output) {
+        for (int i = 0; i < input.length; i++) {
+            output[i] = input[i];
+        }
     }
 
     public void externalSort(String inputFile, String outputFile, int n, int k) {
         File results = toDirectory(".", "Results");
 
         File tempFiles = toDirectory(".", "Results", "TempFiles");
-        File[] tempLists = results.listFiles();
+        File[] tempLists = tempFiles.listFiles();
         for (File temp: tempLists)
             forceDelete(temp);
 
-        double[] list = generate(n, lower, upper); //Example input
-        File input = arrayToFile(list,
-                inputFile, results.toString());
+        File input = new File(results + File.separator + inputFile);
+        try {
+            Scanner check = new Scanner(input);
+            if (!check.hasNextDouble()) {
+                double[] list = generate(n, lower, upper); //Example input
+                input = arrayToFile(list, inputFile, results.toString());
+            }
+        }
+        catch (Exception e) {}
 
         File source = toDirectory(".", "Results", "TempFiles", 0 + "");
         createSource(input, source, k);
@@ -214,7 +233,7 @@ public class ExternalSort implements SortingAlgorithm{
         temp = new File(path);
         temp.mkdirs();
         try {
-            temp = new File(path + File.separator + textFile);
+            temp = new File(temp.toString() + File.separator + textFile);
             BufferedWriter wr = new BufferedWriter(new FileWriter(temp));
             wr.write(arrayToString(arr));
             wr.close();
