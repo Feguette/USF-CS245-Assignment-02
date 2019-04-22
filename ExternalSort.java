@@ -39,15 +39,11 @@ public class ExternalSort implements SortingAlgorithm{
             forceDelete(temp);
 
         File input = new File(results + File.separator + inputFile);
-        try {
-            Scanner check = new Scanner(input);
-            if (!check.hasNextDouble()) {
-                double[] list = generate(n, lower, upper); //Example input
-                input = arrayToFile(list, inputFile, results.toString());
-            }
-        }
-        catch (Exception e) {}
 
+        if (!input.exists()) {
+            double[] list = generate(n, lower, upper); //Example input
+            input = arrayToFile(list, inputFile, results.toString());
+        }
         File source = toDirectory(".", "Results", "TempFiles", 0 + "");
         createSource(input, source, k);
         sortSource(source);
